@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 400          # words per chunk
     CHUNK_OVERLAP: int = 50        # word overlap between chunks
     MAX_CHUNKS_RETRIEVED: int = 5
-    SIMILARITY_THRESHOLD: float = 0.70
+    SIMILARITY_THRESHOLD: float = 0.0
     GLOBAL_SIMILARITY_THRESHOLD: float = 0.75
 
     # Safety
