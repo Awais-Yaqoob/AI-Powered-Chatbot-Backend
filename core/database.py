@@ -52,8 +52,10 @@ async def semantic_search(site_id: str, embedding: list, top_k: int = 5) -> list
         "query_embedding": embedding,
         "match_site_id": site_id,
         "match_count": top_k,
-        "similarity_threshold": settings.SIMILARITY_THRESHOLD,
+        # "similarity_threshold": settings.SIMILARITY_THRESHOLD,
+          "similarity_threshold": 0.0,
     }).execute()
+     print("Chunks found:", result.data)
     return result.data or []
 
 
