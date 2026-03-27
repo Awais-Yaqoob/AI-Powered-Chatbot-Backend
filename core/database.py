@@ -45,17 +45,29 @@ async def save_conversation(
     }).execute()
 
 
+# async def semantic_search(site_id: str, embedding: list, top_k: int = 5) -> list:
+#     """Run pgvector similarity search for a specific site."""
+#     db = get_supabase()
+#     result = db.rpc("match_chunks", {
+#         "query_embedding": embedding,
+#         "match_site_id": site_id,
+#         "match_count": top_k,
+#         # "similarity_threshold": settings.SIMILARITY_THRESHOLD,
+#           "similarity_threshold": 0.0,
+#     }).execute()
+#      print("Chunks found:", result.data)
+#     return result.data or []
+
 async def semantic_search(site_id: str, embedding: list, top_k: int = 5) -> list:
     """Run pgvector similarity search for a specific site."""
     db = get_supabase()
     result = db.rpc("match_chunks", {
-        "query_embedding": embedding,
-        "match_site_id": site_id,
-        "match_count": top_k,
-        # "similarity_threshold": settings.SIMILARITY_THRESHOLD,
-          "similarity_threshold": 0.0,
+        "p_embedding": embedding,       # make sure this matches the RPC
+        "p_site_id": site_id,
+        "p_count": top_k,
+        "p_threshold": 0.0,            # ignore threshold for testing
     }).execute()
-     print("Chunks found:", result.data)
+    print("Chunks found:", result.data)  # debug
     return result.data or []
 
 
