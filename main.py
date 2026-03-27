@@ -8,10 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 import uvicorn
 
-from api.chat import router as chat_router
-from api.indexing import router as indexing_router
-from api.sites import router as sites_router
-from api.analytics import router as analytics_router
+from app-api.chat import router as chat_router
+from app-api.indexing import router as indexing_router
+from app-api.sites import router as sites_router
+from app-api.analytics import router as analytics_router
 from core.config import settings
 
 app = FastAPI(
