@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "wp-ai-chatbot"
+version = "1.0.0"
+description = "WP AI Chatbot SaaS Backend"
+requires-python = ">=3.12"
+
+# All dependencies are in requirements.txt — do NOT list them here
+# to avoid pip trying to resolve app_api as a package
+dependencies = []
+
+[tool.setuptools.packages.find]
+# Only include actual packages — excludes app_api from being
+# treated as an installable distribution
+include = []
+exclude = ["app_api*", "core*", "services*"]
