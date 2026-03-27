@@ -2,11 +2,13 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# System deps for Playwright
+# System deps for Playwright Chromium (manual — avoids broken --with-deps on slim)
 RUN apt-get update && apt-get install -y \
-    wget curl gnupg \
-    libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 \
-    libgbm1 libasound2 libxrandr2 libxfixes3 libxcomposite1 \
+    wget curl gnupg ca-certificates \
+    libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 \
+    libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
+    libgbm1 libasound2 libpango-1.0-0 libpangocairo-1.0-0 \
+    libgtk-3-0 libx11-xcb1 libxcb-dri3-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python deps directly — bypasses requirements.txt entirely
@@ -23,10 +25,10 @@ RUN pip install --no-cache-dir \
     python-dotenv==1.0.1 \
     httpx==0.27.2
 
-# Install Playwright browsers
-RUN playwright install chromium --with-deps
+# Install Playwright Chromium only (no --with-deps — deps installed above manually)
+RUN playwright install chromium
 
-# Copy app code AFTER pip install (better layer caching)
+# Copy app code
 COPY . .
 
 # Create empty __init__.py files so Python treats folders as modules
