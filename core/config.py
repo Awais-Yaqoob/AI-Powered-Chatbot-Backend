@@ -11,9 +11,12 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "change-me-in-production"
 
     # OpenAI
-    OPENAI_API_KEY: str
-    EMBEDDING_MODEL: str = "text-embedding-3-small"
+    # OPENAI_API_KEY: str
+    # EMBEDDING_MODEL: str = "text-embedding-3-small"
+    # PRIMARY_LLM: str = "gpt-4o-mini"
+    OPENAI_API_KEY: Optional[str] = None
     PRIMARY_LLM: str = "gpt-4o-mini"
+    EMBEDDING_MODEL: str = "text-embedding-3-small"
 
     # Anthropic (optional premium tier)
     ANTHROPIC_API_KEY: Optional[str] = None
